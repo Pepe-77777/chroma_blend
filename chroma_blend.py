@@ -67,39 +67,6 @@ class CBlend:
             shutil.rmtree('output_frames/')
             os.mkdir("output_frames")
 
-    def png2mp4(self: object, vidin: str) -> mp4: 
-        '''
-        Function that converts the sequence of pngs to mp4's.
-        '''
-
-        #Get FPS of inputted bw video.
-        cap=cv2.VideoCapture(vidin)
-        fps=cap.get(cv2.CAP_PROP_FPS)
-
-
-
-        #Preparing all variables required to write a video using the f_out frames.
-        images = [img for img in os.listdir('output_frames') if img.endswith(".png")]
-        frame = cv2.imread(os.path.join('output_frames', images[0]))
-        height, width, layers = frame.shape
-        video = cv2.VideoWriter('final_output.avi', cv2.VideoWriter_fourcc(*'XVID'), fps, (width, height))
-
-
-        #The list is initially unsorted, this is to fix that.
-        images = sorted(images, key=lambda x: int(x[0:-6]))
-
-        print("Writing video. Please wait..")
-
-        for image in images:
-
-            video.write(cv2.imread(os.path.join('output_frames', image)))
-
-        
-
-        cv2.destroyAllWindows()
-        video.release()
-
-
 def main ():
     '''
     Main function of chroma_blend.py
@@ -174,15 +141,7 @@ def main ():
         final_output = colblend_instance.color_blend(bw_name, cl_name)
         final_output.save(final_name)
 
-
-    print("Creating video..")
-
-    cblend_instance.png2mp4(user_input.bw_vid_input)
-
-
-
     print("Cleaning up extracted frames...")
-    shutil.rmtree('source_frames/')
     shutil.rmtree('bw_frames/')
 
     print("All done!")
