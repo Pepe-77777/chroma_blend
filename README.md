@@ -1,5 +1,7 @@
 ﻿# Chroma Blend
 
+# [Colab!](https://colab.research.google.com/drive/1Kg5zNDPi2MXCXxCBbSy-k_pmqcW-saOh?usp=sharing#scrollTo=5cqDOG4UWeMB)
+
 A workaround to DeepRemaster's low resolution limitation.
 
 Since Satoshi Iizuka's DeepRemaster functions well only with small videos (432 x 320), a solution for coloring higher resolution videos is to extract the chroma from the small video and layer it over the larger-sized black and white video.
